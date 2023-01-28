@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import style from "@/styles/User.module.css";
 import Link from "next/link";
 import { UserAuth } from "@/context/Auth.context";
+import style from "@/styles/User.module.css";
 import { useRouter } from "next/router";
 
-function UserLogin() {
+function UeseSignUP() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
-  const { user, login, signWithGoogle } = UserAuth({});
+  const { user, signUp, signWithGoogle } = UserAuth({});
 
   const googleSignInHandler = async () => {
     try {
       await signWithGoogle();
-      router.push("/");
+      router.push("/user/login");
     } catch (err) {
       console.log(err);
     }
@@ -23,15 +23,15 @@ function UserLogin() {
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      await login(email, password);
-      router.push("/");
+      await signUp(email, password);
+      router.push("/user/login");
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <div className={style.login}>
+    <div className={style.signup}>
       <div className={style.login_box}>
         <div className={style.login_box_content}>
           <div>
@@ -49,8 +49,8 @@ function UserLogin() {
             </div>
 
             {/* google sign in btn  */}
-            <button className={style.loginBtn} onClick={googleSignInHandler}>
-              Continue with google{" "}
+            <button className={style.loginBtn}>
+              Sign up with google{" "}
               <i className="ri-google-fill text-color-red"></i>
             </button>
 
@@ -85,13 +85,13 @@ function UserLogin() {
                 onClick={() => setShow(!show)}
               ></i>
               <button type="submit" className={style.loginBtn}>
-                Login <i className="ri-login-circle-line"></i>
+                SignUp
               </button>
               <Link
-                href="/user/signup"
+                href="/user/login"
                 className="flex justify-center gap-2 mt-2 transition-all hover:text-color-red"
               >
-                Do not have an account?<i className="ri-edit-box-line"></i>
+                Do have an account?<i className="ri-edit-box-line"></i>
               </Link>
             </form>
           </div>
@@ -104,4 +104,4 @@ function UserLogin() {
   );
 }
 
-export default UserLogin;
+export default UeseSignUP;
