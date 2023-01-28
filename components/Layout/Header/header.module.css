@@ -1,0 +1,63 @@
+.header_link {
+  padding: 0 0.7rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.header_link:hover {
+  background-color: var(--color-gray);
+  border-radius: 0.3rem;
+}
+
+.activeLink {
+  padding: .1rem 0.7rem;
+  transition: all 0.2s ease-in-out;
+  border-bottom: 2px solid var(--color-red);
+  color: var(--color-red);
+  border-radius: 0.3rem;
+}
+
+.uesrImg {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.accountDrop {
+  position: absolute;
+  top: 50%;
+  background-color: var(--color-gray);
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.accountDrop a:hover {
+  transition: all 0.2s ease-in-out;
+}
+.accountDrop button:hover {
+  transition: all 0.2s ease-in-out;
+}
+.accountDrop a:hover {
+  background-color: gray;
+}
+.accountDrop button:hover {
+  background-color: gray;
+}
+
+
+.accBtn{
+  transition: all .3s ease-in-out;
+  border: 2px solid var(--color-gray);
+}
+
+.accBtn:hover{
+  background-color: var(--color-black);
+}

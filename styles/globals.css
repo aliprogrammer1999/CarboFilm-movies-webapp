@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
 *,
 *::after,
 *::before {
@@ -9,12 +11,15 @@
 }
 
 :root {
-  --color-grey: #242423;
+  --color-black: #242423;
+  --color-red: #d62828;
+  --color-gray: #414141;
 }
 
 body {
-  background-color: #252525;
+  background-color: #202020;
   color: white;
+  font-family: "Prompt", sans-serif;
 }
 
 @tailwind base;
