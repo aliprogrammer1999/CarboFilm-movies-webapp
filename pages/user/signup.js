@@ -14,7 +14,7 @@ function UeseSignUP() {
   const googleSignInHandler = async () => {
     try {
       await signWithGoogle();
-      router.push("/user/login");
+      router.push("/");
     } catch (err) {
       console.log(err);
     }
@@ -36,20 +36,20 @@ function UeseSignUP() {
         <div className={style.login_box_content}>
           <div>
             {/* logo login form  */}
-            <div className="w-1/3 text-center flex justify-center mb-4">
-              <i className="ri-clapperboard-fill text-color-red text-[35px]"></i>
-              <h1>
-                <span className=" font-bold text-[35px] text-color-red">C</span>
+            <div className="w-1/3 text-center flex items-center justify-center">
+              <i className="ri-clapperboard-fill text-color-red text-[40px]"></i>
+              <h1 className={style.logo_h1}>
+                <span>C</span>
                 arbon
               </h1>
-              <h1>
-                <span className=" font-bold text-[35px] text-color-red">F</span>
+              <h1 className={style.logo_h1}>
+                <span>F</span>
                 ilm
               </h1>
             </div>
 
             {/* google sign in btn  */}
-            <button className={style.loginBtn}>
+            <button className={style.loginBtn} onClick={googleSignInHandler}>
               Sign up with google{" "}
               <i className="ri-google-fill text-color-red"></i>
             </button>

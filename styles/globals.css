@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@100;300;400;500;600;700;800;900&family=Lobster&display=swap");
 *,
 *::after,
 *::before {
@@ -9,10 +9,26 @@
   text-decoration: none;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #3d3d3d;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: black;
+  border-radius: 1rem;
+}
+
 :root {
-  --color-black: #242423;
+  --color-black: #30302e;
   --color-red: #d62828;
-  --color-gray: #414141;
+  --color-gray: #4d4d4d;
 }
 
 body {

@@ -1,6 +1,9 @@
 .header_link {
-  padding: 0 0.7rem;
+  height: 40px;
+  padding: 0 1rem;
+  margin: 0 0.1rem;
   transition: all 0.2s ease-in-out;
+  font-weight: bold;
 }
 
 .header_link:hover {
@@ -9,11 +12,12 @@
 }
 
 .activeLink {
-  padding: .1rem 0.7rem;
+  padding: 0.1rem 0.7rem;
   transition: all 0.2s ease-in-out;
   border-bottom: 2px solid var(--color-red);
   color: var(--color-red);
   border-radius: 0.3rem;
+  font-weight: bolder;
 }
 
 .uesrImg {
@@ -52,12 +56,67 @@
   background-color: gray;
 }
 
-
-.accBtn{
-  transition: all .3s ease-in-out;
+.accBtn {
+  transition: all 0.3s ease-in-out;
   border: 2px solid var(--color-gray);
 }
 
-.accBtn:hover{
+.accBtn:hover {
   background-color: var(--color-black);
+}
+
+.logo_h1 span {
+  font-family: "Lobster", cursive !important;
+  font-size: 45px;
+  color: var(--color-red);
+  font-weight: bolder;
+}
+
+@media screen and (max-width: 1024px) {
+  .headerMobile {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    background-color: white;
+    color: black;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    width: 0;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+  }
+
+  .closeNavbar {
+    width: 0;
+    padding: 0;
+  }
+
+  .activeNavbar {
+    width: 300px;
+  }
+
+  .activeNavbar .header_link {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+  }
+
+  .activeNavbar .header_link:hover {
+    background-color: rgba(128, 128, 128, 0.336);
+  }
+
+  .activeNavbar .activeLink {
+    background-color: var(--color-red);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: white;
+    padding: 0.5rem;
+  }
 }

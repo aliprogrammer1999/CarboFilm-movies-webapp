@@ -36,14 +36,14 @@ function UserLogin() {
         <div className={style.login_box_content}>
           <div>
             {/* logo login form  */}
-            <div className="w-1/3 text-center flex justify-center mb-4">
-              <i className="ri-clapperboard-fill text-color-red text-[35px]"></i>
-              <h1>
-                <span className=" font-bold text-[35px] text-color-red">C</span>
+            <div className="w-1/3 text-center flex items-center justify-center">
+              <i className="ri-clapperboard-fill text-color-red text-[40px]"></i>
+              <h1 className={style.logo_h1}>
+                <span>C</span>
                 arbon
               </h1>
-              <h1>
-                <span className=" font-bold text-[35px] text-color-red">F</span>
+              <h1 className={style.logo_h1}>
+                <span>F</span>
                 ilm
               </h1>
             </div>

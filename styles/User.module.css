@@ -111,8 +111,26 @@
   box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 3px;
 }
 
+.logo_h1 span {
+  font-family: "Lobster", cursive !important;
+  font-size: 45px;
+  color: var(--color-red);
+  font-weight: bolder;
+}
+
 @media (max-width: 420px) {
   .loginBtn {
     height: 48px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .login_box_content {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .login_box_content {
+    width: 70%;
   }
 }
