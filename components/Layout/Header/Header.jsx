@@ -29,8 +29,8 @@ function Header() {
   ];
 
   return (
-    <header className="h-[55px] flex justify-center items-center select-none w-full">
-      <div className="w-[95%] flex justify-between">
+    <header className={style.Headercss}>
+      <div className={`w-[95%] flex justify-between`}>
         {/* Nav link  */}
         <div className="flex items-center w-1/3 py-1 gap-4 relative lg:static">
           <button

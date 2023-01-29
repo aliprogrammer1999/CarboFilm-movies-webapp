@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import style from "./Slider.module.css";
 
 import { Pagination, Navigation } from "swiper";
 
@@ -9,7 +12,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-export function HomeSlider() {
+export function HomeSlider({ poster }) {
+  console.log(poster);
   return (
     <div>
       {" "}
@@ -19,17 +23,21 @@ export function HomeSlider() {
         }}
         navigation={true}
         modules={[Pagination, Navigation]}
-        className="mySwiper"
+        className="mySwiper h-[95vh]"
       >
-        <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        {poster.map((item) => (
+          <SwiperSlide key={item.id} className={style.postercss}>
+            <img
+              src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+            />
+            <div className=" absolute left-[50%] translate-x-[-50%]">
+              <h1 className="text-4xl font-bold text-center mb-4">
+                {item.original_title}
+              </h1>
+              <p className="text-center">{item.overview}</p>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );

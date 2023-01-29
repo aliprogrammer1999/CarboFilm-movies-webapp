@@ -4,8 +4,9 @@ import styles from "@/styles/Home.module.css";
 import Layout from "../components/Layout/Layout";
 import tmdbRequest from "@/pages/api/tmdb.request";
 import { HomeSlider } from "@/components/Slider/HomeSlider";
+
 function Home({ data }) {
-  console.log(data);
+
   return (
     <>
       <Head>
@@ -17,7 +18,7 @@ function Home({ data }) {
       <Layout>
         <main className="h-[100vh]">
           <section className="h-[50vh] w-full">
-            <HomeSlider />
+            <HomeSlider poster={data.results}/>
           </section>
         </main>
       </Layout>
