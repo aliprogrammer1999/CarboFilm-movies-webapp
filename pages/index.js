@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useState , useEffect} from "react";
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import Layout from "../components/Layout/Layout";
@@ -6,6 +6,14 @@ import tmdbRequest from "@/pages/api/tmdb.request";
 import { HomeSlider } from "@/components/Slider/HomeSlider";
 
 function Home({ data }) {
+const [MoviePoster , setMoviePoster] = useState([])
+
+useEffect(()=>{
+  const filterMoviePoster = data.results.filter(item => item.media_type === "movie")
+  setMoviePoster(filterMoviePoster)
+} , [data])
+  console.log(MoviePoster)
+
 
   return (
     <>
@@ -16,9 +24,9 @@ function Home({ data }) {
         <link rel="icon" href="/CarbonFilm.png" />
       </Head>
       <Layout>
-        <main className="h-[100vh]">
+        <main className="h-[150vh]">
           <section className="h-[50vh] w-full">
-            <HomeSlider poster={data.results}/>
+            <HomeSlider poster={MoviePoster}/>
           </section>
         </main>
       </Layout>

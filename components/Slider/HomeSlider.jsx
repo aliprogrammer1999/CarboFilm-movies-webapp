@@ -14,13 +14,7 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 export function HomeSlider({ poster }) {
-
-  const [movie , setMovie] = useState([])
-    useEffect(()=>{
-       const moviesFilter = poster.filter(item=> item.media_type === 'movie')
-        setMovie(moviesFilter)
-    } , [])
-
+    const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
     return (
     <div>
@@ -33,11 +27,11 @@ export function HomeSlider({ poster }) {
           loop={true}
           spaceBetween={10}
           navigation={true}
-          thumbs={{ swiper: thumbsSwiper }}
-          modules={[FreeMode, Navigation, Thumbs]}
+          thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
+          modules={[ Navigation, Thumbs]}
         className="mySwiper h-[95vh]"
       >
-        {movie.map((item) => (
+        {poster.map((item) => (
           <SwiperSlide key={item.id} className={style.postercss}>
             <img
               src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
@@ -51,6 +45,24 @@ export function HomeSlider({ poster }) {
           </SwiperSlide>
         ))}
       </Swiper>
+        <Swiper
+            onSwiper={setThumbsSwiper}
+            loop={true}
+            spaceBetween={10}
+            slidesPerView={4}
+            freeMode={true}
+            watchSlidesProgress={true}
+            modules={[ Navigation, Thumbs]}
+            className="mySwiper"
+        >
+            {poster.map(item=> <SwiperSlide key={item.id} className="relative flex justify-center items-center mt-3 bg-black rounded overflow-hidden transition-all border hover:border border-black hover:border-color-gray">
+                <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} className="hover:opacity-10 transition-all cursor-pointer"/>
+                <div className="absolute text-center text-white flex items-center justify-center  top-50 w-full h-full">
+                    <h4>{item.title}</h4>
+                </div>
+            </SwiperSlide>)}
+
+        </Swiper>
     </div>
   );
 }
