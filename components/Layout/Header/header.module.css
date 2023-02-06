@@ -4,9 +4,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
+  background-color: transparent;
+  z-index: 10;
+}
+
+.showHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
   position: fixed;
-  top: 0;
-  z-index: 100;
+  z-index: 10;
+  width: 100%;
+  animation: show 0.4s;
+}
+
+@keyframes show {
+  0% {
+    top: -100%;
+  }
+  100% {
+    top: 0;
+  }
 }
 
 .header_link {

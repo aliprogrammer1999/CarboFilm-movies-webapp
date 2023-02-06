@@ -3,15 +3,35 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import style from "./header.module.css";
-import Image from "next/image";
 import { UserAuth } from "@/context/Auth.context";
-import { async } from "@firebase/util";
 
 function Header() {
   const router = useRouter();
   const [openDrop, setOpenDrop] = useState(false);
   const [showNavbar, setShowNavbar] = useState(false);
   const { user, logOut } = UserAuth({});
+
+  const [scrollDirection, setScrollDirection] = useState(null);
+
+  useEffect(() => {
+    let lastScrollY = window.pageYOffset;
+
+    const updateScrollDirection = () => {
+      const scrollY = window.pageYOffset;
+      const direction = scrollY > lastScrollY ? "down" : "up";
+      if (
+        direction !== scrollDirection &&
+        (scrollY - lastScrollY > 10 || scrollY - lastScrollY < -10)
+      ) {
+        setScrollDirection(direction);
+      }
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+    };
+    window.addEventListener("scroll", updateScrollDirection);
+    return () => {
+      window.removeEventListener("scroll", updateScrollDirection);
+    };
+  }, [scrollDirection]);
 
   const LogOutHandler = async () => {
     try {
@@ -29,7 +49,9 @@ function Header() {
   ];
 
   return (
-    <header className={style.Headercss}>
+    <header
+      className={scrollDirection ==='down' ? style.showHeader :style.Headercss}
+    >
       <div className={`w-[95%] flex justify-between`}>
         {/* Nav link  */}
         <div className="flex items-center w-1/3 py-1 gap-4 relative lg:static">

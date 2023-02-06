@@ -29,19 +29,23 @@ export function HomeSlider({ poster }) {
           navigation={true}
           thumbs={{swiper: thumbsSwiper && !thumbsSwiper.destroyed ? thumbsSwiper : null}}
           modules={[ Navigation, Thumbs]}
-        className="mySwiper h-[95vh]"
+        className="mySwiper h-[100vh]"
       >
         {poster.map((item) => (
           <SwiperSlide key={item.id} className={style.postercss}>
             <img
               src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
             />
-            <div className=" absolute left-[50%] translate-x-[-50%]">
+            <div className="flex flex-col items-center gap-8 absolute left-[50%] translate-x-[-50%]">
               <h1 className="text-6xl font-bold text-center mb-4">
                 {item.title}
               </h1>
               <p className="text-center">{item.overview}</p>
+                <button className="text-center w-1/3 p-2 rounded font-bold text-color-red transition-all hover:bg-color-red hover:text-white ease-linear">
+                    More...
+                </button>
             </div>
+
           </SwiperSlide>
         ))}
       </Swiper>
@@ -53,13 +57,15 @@ export function HomeSlider({ poster }) {
             freeMode={true}
             watchSlidesProgress={true}
             modules={[ Navigation, Thumbs]}
-            className="mySwiper"
+            className="mySwiper mt-2"
         >
-            {poster.map(item=> <SwiperSlide key={item.id} className="relative flex justify-center items-center mt-3 bg-black rounded overflow-hidden transition-all border hover:border border-black hover:border-color-gray">
-                <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} className="hover:opacity-10 transition-all cursor-pointer"/>
-                <div className="absolute text-center text-white flex items-center justify-center  top-50 w-full h-full">
-                    <h4>{item.title}</h4>
+            {poster.map(item=> <SwiperSlide key={item.id} className={style.poster_small}>
+                <img src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`} />
+                <div>
+                    <h2 className="font-bold border-color-red border-b text-xl">{item.title}</h2>
+                    <span className="text-10 absolute top-2 left-3 bg-color-red rounded-full flex justify-center items-center w-7 h-7">{Math.round(item.vote_average)}</span>
                 </div>
+
             </SwiperSlide>)}
 
         </Swiper>
