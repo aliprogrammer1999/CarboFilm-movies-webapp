@@ -7,15 +7,16 @@ import { UserAuth } from "@/context/Auth.context";
 
 function Header() {
   const router = useRouter();
-  const [openDrop, setOpenDrop] = useState(false);
-  const [showNavbar, setShowNavbar] = useState(false);
-  const { user, logOut } = UserAuth({});
+  const [openDrop, setOpenDrop] = useState(false);//login and logout btn show
+  const [showNavbar, setShowNavbar] = useState(false); //mobile show navbar
 
+  const { user, logOut } = UserAuth({}); //use data from firebase
+
+  // header effect style
   const [scrollDirection, setScrollDirection] = useState(null);
 
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
-
     const updateScrollDirection = () => {
       const scrollY = window.pageYOffset;
       const direction = scrollY > lastScrollY ? "down" : "up";
@@ -33,6 +34,7 @@ function Header() {
     };
   }, [scrollDirection]);
 
+  // google logout function
   const LogOutHandler = async () => {
     try {
       await logOut();
@@ -41,6 +43,7 @@ function Header() {
     }
   };
 
+  // page info
   const navLink = [
     { href: "/", title: "Home", icon: "ri-home-4-fill" },
     { href: "/movies", title: "Movie", icon: "ri-movie-2-fill" },
@@ -50,7 +53,9 @@ function Header() {
 
   return (
     <header
-      className={scrollDirection ==='down' ? style.showHeader :style.Headercss}
+      className={
+        scrollDirection === "down" ? style.showHeader : style.Headercss
+      }
     >
       <div className={`w-[95%] flex justify-between`}>
         {/* Nav link  */}

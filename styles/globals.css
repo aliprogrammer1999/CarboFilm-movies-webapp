@@ -37,6 +37,27 @@ body {
   font-family: "Heebo", sans-serif;
 }
 
+/* swiper button style  */
+.swiper-button-next:after {
+  font-size: 20px !important;
+  background-color: #2020207e;
+  height: 450px;
+  padding: 0.3rem;
+  margin-left: 1.7rem;
+  display: flex;
+  align-items: center;
+}
+
+.swiper-button-prev:after {
+  font-size: 20px !important;
+  background-color: #2020207e;
+  height: 450px;
+  padding: 0.3rem;
+  margin-left: -1.7rem;
+  display: flex;
+  align-items: center;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

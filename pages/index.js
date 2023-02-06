@@ -1,18 +1,20 @@
-import React , {useState , useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import Layout from "../components/Layout/Layout";
 import tmdbRequest from "@/pages/api/tmdb.request";
 import { HomeSlider } from "@/components/Slider/HomeSlider";
-import ItemSlider from '@/components/Slider/ItemSlider'
+import ItemSlider from "@/components/Slider/ItemSlider";
 
-function Home({ Trand , pupoler }) {
-  const [MoviePoster , setMoviePoster] = useState([])
+function Home({ Trand, pupoler, upcome, top, newPlayData }) {
+  const [MoviePoster, setMoviePoster] = useState([]);
 
-  useEffect(()=>{
-    const filterMoviePoster = Trand.results.filter(item => item.media_type === "movie")
-    setMoviePoster(filterMoviePoster)
-  } , [Trand ])
+  useEffect(() => {
+    const filterMoviePoster = Trand.results.filter(
+      (item) => item.media_type === "movie"
+    );
+    setMoviePoster(filterMoviePoster);
+  }, [Trand]);
 
   return (
     <>
@@ -23,17 +25,43 @@ function Home({ Trand , pupoler }) {
         <link rel="icon" href="/CarbonFilm.png" />
       </Head>
       <Layout>
-        <main className="h-[200vh]">
+        <main className="h-max">
           {/*movie poster*/}
           <section className="w-full">
-            <HomeSlider poster={MoviePoster}/>
+            <HomeSlider poster={MoviePoster} />
           </section>
 
           {/*populer Movie , Tv*/}
-          <section  className="h-max w-[90%] mx-auto my-14">
-             <ItemSlider data={pupoler.results}/>
+          <section className="h-max w-[90%] mx-auto my-14">
+            <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
+              Pupoler Movie & Tv
+            </h1>
+            <ItemSlider data={pupoler.results} />
           </section>
 
+          {/*New Play Movie , Tv*/}
+          <section className="h-max w-[90%] mx-auto my-14">
+            <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
+              New Play Movie & Tv
+            </h1>
+            <ItemSlider data={newPlayData.results} />
+          </section>
+
+          {/*UpComing Movie , Tv*/}
+          <section className="h-max w-[90%] mx-auto my-14">
+            <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
+              Upcoming Movie & Tv
+            </h1>
+            <ItemSlider data={upcome.results} />
+          </section>
+
+          {/*TopRate Movie , Tv*/}
+          <section className="h-max w-[90%] mx-auto my-14">
+            <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
+              TopRate Movie & Tv
+            </h1>
+            <ItemSlider data={top.results} />
+          </section>
         </main>
       </Layout>
     </>
@@ -41,18 +69,25 @@ function Home({ Trand , pupoler }) {
 }
 
 export async function getServerSideProps() {
-  const [TrandRes, pupolerRes ] = await Promise.all([
-    fetch(tmdbRequest.Trending),
-    fetch(tmdbRequest.pupoler)
-  ]);
+  const [TrandRes, pupolerRes, upcomingRes, toprateRes, newPlayRes] =
+    await Promise.all([
+      fetch(tmdbRequest.Trending),
+      fetch(tmdbRequest.pupoler),
+      fetch(tmdbRequest.upComing),
+      fetch(tmdbRequest.topRate),
+      fetch(tmdbRequest.NewPlay),
+    ]);
 
-  const [Trand, pupoler] = await Promise.all([
+  const [Trand, pupoler, upcome, top, newPlayData] = await Promise.all([
     TrandRes.json(),
-    pupolerRes.json()
+    pupolerRes.json(),
+    upcomingRes.json(),
+    toprateRes.json(),
+    newPlayRes.json(),
   ]);
 
   return {
-    props: { Trand , pupoler }, // will be passed to the page component as props
+    props: { Trand, pupoler, upcome, top, newPlayData }, // will be passed to the page component as props
   };
 }
 
