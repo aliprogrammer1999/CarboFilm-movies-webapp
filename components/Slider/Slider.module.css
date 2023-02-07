@@ -28,7 +28,7 @@
 }
 
 .poster_small:hover img {
-  opacity: 0.2;
+  opacity: 0.1;
 }
 
 .poster_small div {
@@ -65,6 +65,7 @@
   border-radius: 0.5rem;
   opacity: 1;
   transition: all 0.2s ease-in-out;
+  width: 100%;
 }
 
 .ItemInfo {

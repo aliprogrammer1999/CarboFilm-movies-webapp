@@ -1,3 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable @next/next/no-img-element */
+
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,6 +13,7 @@ import style from "./Slider.module.css";
 // import required modules
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 function ItemSlider({ data }) {
   return (
@@ -40,21 +44,23 @@ function ItemSlider({ data }) {
             slidesPerView: 3,
           },
           1440: {
-            slidesPerView: 5,
+            slidesPerView: 4,
             spaceBetween: 10,
           },
         }}
-        className="mySwiper h-[450px] select-none"
+        className="mySwiper h-[500px] select-none"
       >
         {data.map((item) => (
           <SwiperSlide key={item.id} className={style.ItemSlider}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+            <Image
+              src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
               className={style.ItemSliderImg}
+              width={300}
+              height={200}
             />
             <div className={style.ItemInfo}>
               <div className="whitespace-pre-line px-2 gap-5 flex flex-col">
-                <h1 className="text-xl font-bold">{item.title}</h1>
+                <h1 className="text-3xl font-bold">{item.title}</h1>
                 <span className="text-xs">{item.overview}</span>
               </div>
               <div className="flex gap-7 items-center mt-10 mb-5">
@@ -71,12 +77,12 @@ function ItemSlider({ data }) {
                   {item.original_language}
                 </span>
               </div>
-              <motion.button whileTap={{ scale: 0.8 }}>
-                <Link
-                  href="#"
-                  className="text-lg bg-color-red w-[200px] rounded  py-1 px-20"
-                >
-                  More
+              <motion.button
+                whileTap={{ scale: 0.8 }}
+                whileHover={{ scale: 1.3 }}
+              >
+                <Link href="#">
+                  <i class="ri-play-circle-line text-6xl text-color-red"></i>
                 </Link>
               </motion.button>
             </div>

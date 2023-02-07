@@ -4,9 +4,9 @@ import React, { useRef, useState, useEffect } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import style from "./Slider.module.css";
-
+import { motion } from "framer-motion";
 import { Navigation, Thumbs } from "swiper";
-
+import Link from "next/link";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/free-mode";
@@ -36,15 +36,20 @@ export function HomeSlider({ poster }) {
         {poster.map((item) => (
           <SwiperSlide key={item.id} className={style.postercss}>
             <img
-              src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+              src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
             />
             <div className="flex flex-col items-center gap-1 md:gap-8 absolute left-[50%] translate-x-[-50%]">
               <h1 className="text-xl md:text-4xl lg:text-6xl font-bold text-center">
                 {item.title}
               </h1>
-              <button className="text-center w-1/3 p-2 rounded font-bold text-color-red transition-all hover:bg-color-red hover:text-white ease-linear">
-                More...
-              </button>
+              <motion.button
+                whileTap={{ scale: 0.8 }}
+                whileHover={{ scale: 1.3 }}
+              >
+                <Link href="#">
+                  <i class="ri-play-circle-line text-6xl text-color-red"></i>
+                </Link>
+              </motion.button>
             </div>
           </SwiperSlide>
         ))}
