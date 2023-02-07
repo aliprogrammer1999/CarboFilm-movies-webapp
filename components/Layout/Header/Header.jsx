@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import style from "./header.module.css";
 import { UserAuth } from "@/context/Auth.context";
+import Image from "next/image";
 
 function Header() {
   const router = useRouter();
@@ -12,7 +13,6 @@ function Header() {
 
   const { user, logOut } = UserAuth({}); //use data from firebase
 
-  console.log(user);
 
   // header effect style
   const [scrollDirection, setScrollDirection] = useState(null);
@@ -100,7 +100,7 @@ function Header() {
         </div>
 
         {/* Logo  */}
-        <div className="w-1/3 text-center flex items-center justify-center">
+        <Link href='/' className="w-1/3 text-center flex items-center justify-center">
           <i className="ri-clapperboard-fill text-color-red text-[40px]"></i>
           <h1 className={style.logo_h1}>
             <span>C</span>
@@ -110,7 +110,7 @@ function Header() {
             <span>F</span>
             ilm
           </h1>
-        </div>
+        </Link>
 
         {/* Account  */}
         <div className="w-1/3 flex justify-end items-center gap-2">
@@ -131,10 +131,12 @@ function Header() {
                 {user?.photoURL == null ? (
                   <i className="ri-user-3-fill w-[40px] h-[40px] bg-color-gray rounded-full flex justify-center items-center text-2xl"></i>
                 ) : (
-                  <img
+                  <Image
                     src={user.photoURL}
                     className={style.uesrImg}
                     alt="user Image"
+                    width={20}
+                    height={20}
                   />
                 )}
               </div>
@@ -156,7 +158,7 @@ function Header() {
                   href="/account"
                 >
                   <i className="ri-archive-line text-lg"></i>
-                  Favorite
+                  Watch List +
                 </Link>
                 <button
                   className="flex items-center justify-center py-1 gap-1 bg-color-gray w-full rounded-md"

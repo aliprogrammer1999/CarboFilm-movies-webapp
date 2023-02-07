@@ -1,0 +1,13 @@
+.detileInfo {
+  background: rgba(0, 0, 0, 0.76);
+  box-shadow: 6px 24px 102px 38px rgba(0, 0, 0, 0.452);
+  -webkit-box-shadow: 6px 24px 102px 38px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 6px 24px 102px 38px rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  border-radius: 1rem;
+  margin-bottom: 3rem;
+  width: 90%;
+  height: 350px;
+  display: flex;
+}

@@ -82,7 +82,11 @@ function ItemSlider({ data }) {
                 whileTap={{ scale: 0.8 }}
                 whileHover={{ scale: 1.3 }}
               >
-                <Link href="#">
+                <Link
+                  href={`/${
+                    item.media_type == undefined ? "movie" : item.media_type
+                  }/${item.id}`}
+                >
                   <i className="ri-play-circle-line text-6xl text-color-red"></i>
                 </Link>
               </motion.button>

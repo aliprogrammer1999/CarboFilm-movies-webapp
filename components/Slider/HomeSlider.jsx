@@ -50,7 +50,11 @@ export function HomeSlider({ poster }) {
                 whileTap={{ scale: 0.8 }}
                 whileHover={{ scale: 1.3 }}
               >
-                <Link href="#">
+                <Link
+                  href={`/${
+                    item.media_type == undefined ? "movie" : item.media_type
+                  }/${item.id}`}
+                >
                   <i className="ri-play-circle-line text-6xl text-color-red"></i>
                 </Link>
               </motion.button>
@@ -71,7 +75,7 @@ export function HomeSlider({ poster }) {
         {poster.map((item) => (
           <SwiperSlide key={item.id} className={style.poster_small}>
             <Image
-            className="w-full"
+              className="w-full"
               src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
               alt="poster movie"
               width={200}

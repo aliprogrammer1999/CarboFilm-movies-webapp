@@ -65,6 +65,8 @@ function UeseSignUP() {
                 required
                 autoComplete="Name"
                 value={displayName}
+                min="6"
+                max="20"
                 onChange={(e) => {
                   setDisplayName(e.target.value);
                 }}
