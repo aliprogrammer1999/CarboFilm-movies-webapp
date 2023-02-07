@@ -8,13 +8,14 @@ function UeseSignUP() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
   const [show, setShow] = useState(false);
   const { user, signUp, signWithGoogle } = UserAuth({});
 
   const googleSignInHandler = async () => {
     try {
-      await signWithGoogle();
       router.push("/");
+      await signWithGoogle();
     } catch (err) {
       console.log(err);
     }
@@ -23,7 +24,7 @@ function UeseSignUP() {
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      await signUp(email, password);
+      await signUp(email, password, displayName);
       router.push("/user/login");
     } catch (err) {
       console.log(err);
@@ -59,6 +60,17 @@ function UeseSignUP() {
             {/* sign in with form  */}
             <form onSubmit={submitHandler}>
               <input
+                type="text"
+                placeholder="User Name"
+                required
+                autoComplete="Name"
+                value={displayName}
+                onChange={(e) => {
+                  setDisplayName(e.target.value);
+                }}
+              />
+
+              <input
                 type="email"
                 placeholder="Email"
                 required
@@ -68,6 +80,7 @@ function UeseSignUP() {
                   setEmail(e.target.value);
                 }}
               />
+
               <input
                 type={show ? "type" : "password"}
                 placeholder="Password"
@@ -78,6 +91,7 @@ function UeseSignUP() {
                   setPassword(e.target.value);
                 }}
               />
+
               <i
                 className={`${
                   show ? "ri-eye-off-line" : "ri-eye-fill"

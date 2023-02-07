@@ -13,8 +13,8 @@ function UserLogin() {
 
   const googleSignInHandler = async () => {
     try {
-      await signWithGoogle();
       router.push("/");
+      await signWithGoogle();
     } catch (err) {
       console.log(err);
     }
@@ -23,8 +23,8 @@ function UserLogin() {
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
-      await login(email, password);
       router.push("/");
+      await login(email, password);
     } catch (err) {
       console.log(err);
     }

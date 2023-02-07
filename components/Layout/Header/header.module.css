@@ -13,11 +13,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: black;
+  background-color: rgb(29, 29, 29);
   position: fixed;
   z-index: 10;
   width: 100%;
   animation: show 0.4s;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.623);
 }
 
 @keyframes show {

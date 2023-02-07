@@ -55,6 +55,7 @@ function ItemSlider({ data }) {
             <Image
               src={`https://image.tmdb.org/t/p/original${item.poster_path}`}
               className={style.ItemSliderImg}
+              alt="image poster"
               width={300}
               height={200}
             />
@@ -82,7 +83,7 @@ function ItemSlider({ data }) {
                 whileHover={{ scale: 1.3 }}
               >
                 <Link href="#">
-                  <i class="ri-play-circle-line text-6xl text-color-red"></i>
+                  <i className="ri-play-circle-line text-6xl text-color-red"></i>
                 </Link>
               </motion.button>
             </div>

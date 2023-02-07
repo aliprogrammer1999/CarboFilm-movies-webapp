@@ -27,7 +27,7 @@ function Home({ Trand, pupoler, upcome, top, newPlayData }) {
       <Layout>
         <main className="h-max">
           {/*movie poster*/}
-          <section className="w-full">
+          <section className="w-full mb-10">
             <HomeSlider poster={MoviePoster} />
           </section>
 

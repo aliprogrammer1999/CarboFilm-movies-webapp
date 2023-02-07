@@ -7,10 +7,12 @@ import { UserAuth } from "@/context/Auth.context";
 
 function Header() {
   const router = useRouter();
-  const [openDrop, setOpenDrop] = useState(false);//login and logout btn show
+  const [openDrop, setOpenDrop] = useState(false); //login and logout btn show
   const [showNavbar, setShowNavbar] = useState(false); //mobile show navbar
 
   const { user, logOut } = UserAuth({}); //use data from firebase
+
+  console.log(user);
 
   // header effect style
   const [scrollDirection, setScrollDirection] = useState(null);
@@ -38,6 +40,7 @@ function Header() {
   const LogOutHandler = async () => {
     try {
       await logOut();
+      router.reload(window.location.pathname);
     } catch (err) {
       console.log(err);
     }
@@ -125,11 +128,15 @@ function Header() {
                   </span>{" "}
                   {user.displayName}
                 </div>
-                <img
-                  src={user.photoURL}
-                  className={style.uesrImg}
-                  alt="user Image"
-                />
+                {user?.photoURL == null ? (
+                  <i className="ri-user-3-fill w-[40px] h-[40px] bg-color-gray rounded-full flex justify-center items-center text-2xl"></i>
+                ) : (
+                  <img
+                    src={user.photoURL}
+                    className={style.uesrImg}
+                    alt="user Image"
+                  />
+                )}
               </div>
 
               <div

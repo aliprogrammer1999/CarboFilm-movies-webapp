@@ -12,6 +12,7 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import Image from "next/image";
 
 export function HomeSlider({ poster }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -35,8 +36,11 @@ export function HomeSlider({ poster }) {
       >
         {poster.map((item) => (
           <SwiperSlide key={item.id} className={style.postercss}>
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+              width={1600}
+              height={900}
+              alt="image poster"
             />
             <div className="flex flex-col items-center gap-1 md:gap-8 absolute left-[50%] translate-x-[-50%]">
               <h1 className="text-xl md:text-4xl lg:text-6xl font-bold text-center">
@@ -47,7 +51,7 @@ export function HomeSlider({ poster }) {
                 whileHover={{ scale: 1.3 }}
               >
                 <Link href="#">
-                  <i class="ri-play-circle-line text-6xl text-color-red"></i>
+                  <i className="ri-play-circle-line text-6xl text-color-red"></i>
                 </Link>
               </motion.button>
             </div>
@@ -58,7 +62,7 @@ export function HomeSlider({ poster }) {
         onSwiper={setThumbsSwiper}
         loop={true}
         spaceBetween={10}
-        slidesPerView={4}
+        slidesPerView={6}
         freeMode={true}
         watchSlidesProgress={true}
         modules={[Navigation, Thumbs]}
@@ -66,11 +70,15 @@ export function HomeSlider({ poster }) {
       >
         {poster.map((item) => (
           <SwiperSlide key={item.id} className={style.poster_small}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
+            <Image
+            className="w-full"
+              src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+              alt="poster movie"
+              width={200}
+              height={100}
             />
             <div>
-              <h2 className="font-bold border-color-red border-b text-xl">
+              <h2 className="font-bold border-color-red border-b text-md text-center">
                 {item.title}
               </h2>
               <span className="text-10 absolute top-2 left-3 bg-color-red rounded-full flex justify-center items-center w-7 h-7">
