@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 
 function Footer() {
   return (
-    <footer className="w-full h-[300px] bg-color-black flex justify-center items-center">
-      <div className="w-[80%] bg-[#202020] h-[80%] rounded-md px-10 py-5 flex flex-col gap-7 justify-center items-center">
+    <footer className="w-full h-[300px] bg-color-[#202020] flex justify-center items-center">
+      <div className="w-[80%] bg-color-black h-[80%] rounded-md px-10 py-5 flex flex-col gap-7 justify-center items-center">
         <div className="text-5xl flex gap-5">
           <motion.button
             whileTap={{ scale: 0.9 }}
@@ -46,7 +46,7 @@ function Footer() {
             Iran/Mazandran/Babol
           </div>
         </div>
-        <h1 className="w-full text-center bg-color-black rounded">CarboFilm © 2023</h1>
+        <h1 className="w-full text-center bg-color-gray rounded">CarboFilm © 2023</h1>
       </div>
     </footer>
   );

@@ -1,14 +1,17 @@
+// dependency
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import styles from "@/styles/Home.module.css";
-import Layout from "../components/Layout/Layout";
+// api
 import tmdbRequest from "@/pages/api/tmdb.request";
+// component
 import { HomeSlider } from "@/components/Slider/HomeSlider";
 import ItemSlider from "@/components/Slider/ItemSlider";
+import Layout from "../components/Layout/Layout";
 
 function Home({ Trand, pupoler, upcome, top, newPlayData }) {
-  const [MoviePoster, setMoviePoster] = useState([]);
+  const [MoviePoster, setMoviePoster] = useState([]); // state for filter movie
 
+  // home filter movie from tv
   useEffect(() => {
     const filterMoviePoster = Trand.results.filter(
       (item) => item.media_type === "movie"

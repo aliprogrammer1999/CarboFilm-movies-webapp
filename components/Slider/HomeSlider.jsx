@@ -1,18 +1,20 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
-import React, { useRef, useState, useEffect } from "react";
-// Import Swiper React components
+
+// Import Swiper React components and dependency
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import style from "./Slider.module.css";
 import { motion } from "framer-motion";
 import { Navigation, Thumbs } from "swiper";
 import Link from "next/link";
+import Image from "next/image";
+
 // Import Swiper styles
+import style from "./Slider.module.css";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
-import Image from "next/image";
 
 export function HomeSlider({ poster }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
@@ -42,10 +44,13 @@ export function HomeSlider({ poster }) {
               height={900}
               alt="image poster"
             />
+            {/* title and link poster top home page  */}
             <div className="flex flex-col items-center gap-1 md:gap-8 absolute left-[50%] translate-x-[-50%]">
               <h1 className="text-xl md:text-4xl lg:text-6xl font-bold text-center">
                 {item.title}
               </h1>
+
+              {/* link to detail  */}
               <motion.button
                 whileTap={{ scale: 0.8 }}
                 whileHover={{ scale: 1.3 }}
@@ -62,6 +67,7 @@ export function HomeSlider({ poster }) {
           </SwiperSlide>
         ))}
       </Swiper>
+      {/* small poster  */}
       <Swiper
         onSwiper={setThumbsSwiper}
         loop={true}

@@ -1,10 +1,16 @@
 /* eslint-disable jsx-a11y/alt-text */
+
+// dependency
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import style from "./header.module.css";
-import { UserAuth } from "@/context/Auth.context";
 import Image from "next/image";
+import Link from "next/link";
+
+// user Data
+import { UserAuth } from "@/context/Auth.context";
+
+// style css
+import style from "./header.module.css";
 
 function Header() {
   const router = useRouter();
@@ -12,7 +18,6 @@ function Header() {
   const [showNavbar, setShowNavbar] = useState(false); //mobile show navbar
 
   const { user, logOut } = UserAuth({}); //use data from firebase
-
 
   // header effect style
   const [scrollDirection, setScrollDirection] = useState(null);
@@ -46,7 +51,7 @@ function Header() {
     }
   };
 
-  // page info
+  // page and link info
   const navLink = [
     { href: "/", title: "Home", icon: "ri-home-4-fill" },
     { href: "/movies", title: "Movie", icon: "ri-movie-2-fill" },
@@ -61,7 +66,7 @@ function Header() {
       }
     >
       <div className={`w-[95%] flex justify-between`}>
-        {/* Nav link  */}
+        {/* Nav Bar Link   */}
         <div className="flex items-center w-1/3 py-1 gap-4 relative lg:static">
           <button
             className="lg:hidden bg-color-black px-2 pt-[1px] rounded border-color-black border transition-all hover:bg-color-black hover:border hover:border-gray-400"
@@ -81,6 +86,8 @@ function Header() {
                 className="ri-close-fill absolute top-4 right-5 text-2xl cursor-pointer lg:hidden"
                 onClick={() => setShowNavbar(false)}
               ></i>
+
+              {/* Link to page  */}
               {navLink.map((item, index) => (
                 <Link
                   key={index}
@@ -100,7 +107,10 @@ function Header() {
         </div>
 
         {/* Logo  */}
-        <Link href='/' className="w-1/3 text-center flex items-center justify-center">
+        <Link
+          href="/"
+          className="w-1/3 text-center flex items-center justify-center"
+        >
           <i className="ri-clapperboard-fill text-color-red text-[40px]"></i>
           <h1 className={style.logo_h1}>
             <span>C</span>
@@ -122,12 +132,15 @@ function Header() {
                   setOpenDrop(!openDrop);
                 }}
               >
+                {/* user Watch List badage  */}
                 <div className="flex items-center gap-2">
                   <span className="text-xs bg-color-red h-4 w-4 flex justify-center items-center rounded-full">
                     1
                   </span>{" "}
                   {user.displayName}
                 </div>
+
+                {/* user Image */}
                 {user?.photoURL == null ? (
                   <i className="ri-user-3-fill w-[40px] h-[40px] bg-color-gray rounded-full flex justify-center items-center text-2xl"></i>
                 ) : (
@@ -141,6 +154,7 @@ function Header() {
                 )}
               </div>
 
+              {/* singOut / singIn and watch list box  */}
               <div
                 className={style.accountDrop}
                 style={
@@ -153,10 +167,12 @@ function Header() {
                     : { height: 0, padding: 0 }
                 }
               >
+                {/* ------------------------------ */}
                 <Link
                   className="flex items-center justify-center py-1 gap-1 bg-color-gray w-full rounded-md "
                   href="/account"
                 >
+                  {/* ------------------------ */}
                   <i className="ri-archive-line text-lg"></i>
                   Watch List +
                 </Link>
@@ -170,6 +186,7 @@ function Header() {
               </div>
             </div>
           ) : (
+            // if user singOut show this section -------------------
             <Link href="/user/login">
               <div
                 className={`flex items-center z-50 gap-3 bg-color-gray p-[1px] pl-4 rounded-full cursor-pointer transition-all  ${style.accBtn}`}
