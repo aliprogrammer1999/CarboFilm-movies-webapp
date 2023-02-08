@@ -7,7 +7,14 @@
   -webkit-backdrop-filter: blur(7px);
   border-radius: 1rem;
   margin-bottom: 3rem;
-  width: 90%;
-  height: 350px;
+  width: 80%;
+  height: max-content;
   display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .detileInfo {
+    width: 90%;
+    height: max-content;
+  }
 }
