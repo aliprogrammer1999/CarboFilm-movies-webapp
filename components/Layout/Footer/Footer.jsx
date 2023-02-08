@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 function Footer() {
   return (
-    <footer className="w-full h-[300px] bg-color-[#202020] flex justify-center items-center">
+    <footer className="w-full h-max bg-color-[#202020] flex justify-center items-center">
       <div className="w-[80%] bg-color-black h-[80%] rounded-md px-10 py-5 flex flex-col gap-7 justify-center items-center">
         <div className="text-5xl flex gap-5">
           <motion.button
@@ -32,7 +32,7 @@ function Footer() {
           </motion.button>
         </div>
 
-        <div className="text-center flex gap-14">
+        <div className="text-center flex gap-14 flex-col md:flex-row md:items-center">
           <div className="flex items-center gap-2">
             <i className="ri-mail-send-line text-xl"></i>
             ali.programer.1999@gmail.com

@@ -18,11 +18,13 @@ import { UserAuth } from "@/context/Auth.context";
 import { db } from "@/firebase/firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
-function MediaType({ detail, similarShow, category }) {
+function MediaType({ detail, similarShow, category, trailerVideo }) {
   const { user } = UserAuth({});
   const [save, setSave] = useState(false);
 
   const MovieId = doc(db, "users", `${user?.email}`);
+
+  console.log(trailerVideo);
 
   // watch list handler
   const saveShow = async () => {
@@ -48,10 +50,10 @@ function MediaType({ detail, similarShow, category }) {
   return (
     <>
       <Layout>
-        <section className="h-[100vh] bg-black flex justify-center items-end relative">
+        <section className="h-[135vh] md:h-[125vh] lg:h-[105vh] bg-black flex justify-center items-end relative">
           {/* background poster item  background image*/}
           <div
-            className="h-full w-full absolute"
+            className="h-full w-full absolute flex items-center justify-center"
             style={{
               backgroundImage: `url(${`https://image.tmdb.org/t/p/original/${detail?.backdrop_path}`})`,
               backgroundPosition: "center",
@@ -66,7 +68,7 @@ function MediaType({ detail, similarShow, category }) {
             <div className="p-3 mr-2">
               <Image
                 src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
-                className="h-full object-continer rounded-lg"
+                className="h-full hidden md:block object-continer rounded-lg w-[400px]"
                 alt={detail?.title}
                 width={250}
                 height={100}
@@ -74,34 +76,36 @@ function MediaType({ detail, similarShow, category }) {
             </div>
 
             {/* information about movie and tv  */}
-            <div className="w-full p-3 py-4 flex flex-col gap-2 justify-between text-xl">
+            <div className="md:w-full p-3 py-4 flex flex-col gap-2 justify-between text-sm lg:text-xl">
               {/* show title and top section  */}
-              <div className="flex items-center justify-between border-b-2 pb-2 mb-1">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col lg:flex-row items-center md:items-start justify-between pb-2 mb-1">
+                <div className="flex flex-col md:flex-row items-center gap-3">
                   <h1 className="text-3xl font-bold">{detail?.title}</h1>
-                  <h4 className="text-xs">({detail?.tagline})</h4>
+                  {detail.tagline ? (
+                    <h4 className="text-xs ml-4">({detail?.tagline})</h4>
+                  ) : null}
                 </div>
                 {/* ---------------- */}
-                <div className="w-[300px] h-[50px] flex gap-10 justify-center items-center">
-                  <div className=" text-bold w-[30px] text-xl flex justify-center items-center rounded-full ">
-                    <i className="ri-heart-fill text-color-red text-2xl"></i>
+                <div className="w-[300px] h-[50px] flex gap-10 justify-center items-center ml-4">
+                  <div className=" text-bold w-[30px] text-sm lg:text-xl flex justify-center items-center rounded-full ">
+                    <i className="ri-heart-fill text-color-red text-sm lg:text-2xl"></i>
                     {Math.round(detail?.vote_average)}/10
                   </div>
                   {/* ---------------- */}
-                  <div className="flex items-center text-xl">
-                    <i className="ri-timer-line text-color-red text-2xl"></i>
+                  <div className="flex items-center text-sm lg:text-xl">
+                    <i className="ri-timer-line text-color-red text-sm lg:text-2xl"></i>
                     {detail?.runtime}
                   </div>
                   {/* --------------- */}
-                  <div className="flex items-center text-xl">
-                    <i className="ri-calendar-event-line text-color-red text-2xl"></i>
+                  <div className="flex items-center text-sm lg:text-xl">
+                    <i className="ri-calendar-event-line text-color-red text-sm lg:text-2xl"></i>
                     {detail?.release_date}
                   </div>
                 </div>
               </div>
 
               {/* language and Countries middle section*/}
-              <div className="flex gap-2 justify-between mr-5 items-center flex-wrap">
+              <div className="flex flex-col lg:flex-row gap-2 items-center md:items-start justify-between mr-5 flex-wrap">
                 <div className="flex gap-2 w-max px-3 py-1 rounded-xl text-md items-center flex-wrap">
                   Production Countries :
                   {detail?.production_countries.map((item, index) => (
@@ -141,11 +145,13 @@ function MediaType({ detail, similarShow, category }) {
 
               {/* discriptin about movie and tv  */}
               <div className=" border-t-2 pt-2 mt-3">
-                <p className="text-center text-sm">{detail?.overview}</p>
+                <p className="text-center md:text-start text-sm">
+                  {detail?.overview}
+                </p>
               </div>
 
               {/*button add to list and download section  */}
-              <div className="flex gap-3 mt-5 justify-end">
+              <div className="flex flex-col md:flex-row gap-3 mt-5 justify-center md:justify-start">
                 <motion.button
                   whileTap={{ scale: 1 }}
                   onClick={saveShow}
@@ -163,6 +169,14 @@ function MediaType({ detail, similarShow, category }) {
                 >
                   Download <i className="ri-download-2-line text-lg"></i>
                 </motion.button>
+                {/* ------------------ */}
+                <motion.button
+                  whileTap={{ scale: 1 }}
+                  whileHover={{ scale: 1.1 }}
+                  className="flex items-center gap-1 text-sm bg-white text-color-red p-1 px-2 rounded-md w-[150px] justify-center"
+                >
+                  Trailer <i className="ri-play-line text-lg"></i>
+                </motion.button>
               </div>
             </div>
           </div>
@@ -171,7 +185,7 @@ function MediaType({ detail, similarShow, category }) {
         {/* similar section  */}
 
         <section className="h-max w-[90%] mx-auto my-14">
-          <h1 className=" border-b-2 mb-3 pb-3 text-2xl font-bold text-center border-color-red  uppercase">
+          <h1 className="  mb-3 pb-3 text-2xl font-bold text-center border-color-red  uppercase">
             similar {category}
           </h1>
           <ItemSlider data={similarShow.results} />
@@ -188,7 +202,7 @@ export async function getServerSideProps(context) {
   const { id } = context.query;
   const { category } = context.query;
 
-  const [DetailRes, similarShowRes] = await Promise.all([
+  const [DetailRes, similarShowRes, trailerVideoRes] = await Promise.all([
     // detail request
     fetch(
       `https://api.themoviedb.org/3/${category}/${id}?api_key=${process.env.API_KEY}&language=en-US`
@@ -197,15 +211,20 @@ export async function getServerSideProps(context) {
     fetch(
       `https://api.themoviedb.org/3/${category}/${id}/similar?api_key=${process.env.API_KEY}&language=en-US&page=1`
     ),
+    // video trailer movie and tv
+    fetch(
+      `https://api.themoviedb.org/3/${category}/${id}//watch/providers?api_key=${process.env.API_KEY}&language=en-US`
+    ),
   ]);
 
-  const [detail, similarShow] = await Promise.all([
+  const [detail, similarShow, trailerVideo] = await Promise.all([
     DetailRes.json(),
     similarShowRes.json(),
+    trailerVideoRes.json(),
   ]);
 
   return {
-    props: { detail, similarShow, category }, // will be passed to the page component as props
+    props: { detail, similarShow, trailerVideo, category }, // will be passed to the page component as props
   };
 }
 

@@ -87,13 +87,10 @@ export function HomeSlider({ poster }) {
               width={200}
               height={100}
             />
-            <div>
+            <div className="px-3">
               <h2 className="font-bold border-color-red border-b text-md text-center">
                 {item.title}
               </h2>
-              <span className="text-10 absolute top-2 left-3 bg-color-red rounded-full flex justify-center items-center w-7 h-7">
-                {Math.round(item.vote_average)}
-              </span>
             </div>
           </SwiperSlide>
         ))}

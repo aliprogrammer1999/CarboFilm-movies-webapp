@@ -12,9 +12,9 @@
   display: flex;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .detileInfo {
-    width: 90%;
+    width: 95%;
     height: max-content;
   }
 }
