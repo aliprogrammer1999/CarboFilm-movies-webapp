@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 function Footer() {
   return (
     <footer className="w-full h-max bg-color-[#202020] flex justify-center items-center">
-      <div className="w-[80%] bg-color-black h-[80%] rounded-md px-10 py-5 flex flex-col gap-7 justify-center items-center">
+      <div className="w-[80%] bg-black h-[80%] rounded-md px-10 py-5 flex flex-col gap-7 justify-center items-center">
         <div className="text-5xl flex gap-5">
           <motion.button
             whileTap={{ scale: 0.9 }}

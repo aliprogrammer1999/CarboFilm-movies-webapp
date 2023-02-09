@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-head-element */
 
 // dependency;
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
@@ -22,6 +22,7 @@ import TrailerVideo from "@/components/Video/TrailerVideo";
 function MediaType({ detail, similarShow, category, trailerVideo }) {
   const { user } = UserAuth({});
   const [save, setSave] = useState(false);
+  const [videoBox, setVideoBox] = useState(false);
 
   const MovieId = doc(db, "users", `${user?.email}`);
 
@@ -49,9 +50,27 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
       <Layout>
         <section className="h-[135vh] md:h-[125vh] lg:h-[105vh] bg-black flex justify-center items-end relative">
           {/* trailer Video  */}
-          <div className=" absolute">
-            <TrailerVideo />
-          </div>
+          <motion.div
+            layout
+            style={{ display: videoBox ? "block" : "none" }}
+            onClick={() => setVideoBox(!videoBox)}
+            className="absolute w-max h-[100%] z-10 top-1/2 md:top-[40%] lg:top-[20%] xl:top-[10%]"
+          >
+            <button
+              className=" w-full text-center"
+              onClick={() => {
+                setVideoBox(false);
+              }}
+            >
+              <motion.i
+                whileTap={{ scale: 0.9 }}
+                className="ri-close-line bg-color-black text-4xl rounded-full transition-all hover:bg-color-red"
+              ></motion.i>
+            </button>
+            {videoBox ? (
+              <TrailerVideo videoData={trailerVideo.results[0]} />
+            ) : null}
+          </motion.div>
           {/* background poster item  background image*/}
 
           <div
@@ -170,6 +189,7 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
                 </motion.button>
                 {/* ------------------ */}
                 <motion.button
+                  onClick={() => setVideoBox(true)}
                   whileTap={{ scale: 1 }}
                   whileHover={{ scale: 1.1 }}
                   className="flex items-center gap-1 text-sm bg-white text-color-red p-1 px-2 rounded-md w-full sm:w-[150px] justify-center"
@@ -188,7 +208,9 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
             similar {category}
           </h1>
           {similarShow.results.length == 0 ? (
-            <h1 className=" text-center text-color-red font-bold">Not Found Please Try again</h1>
+            <h1 className=" text-center text-color-red font-bold">
+              Not Found Please Try again
+            </h1>
           ) : (
             <ItemSlider data={similarShow.results} />
           )}
@@ -214,9 +236,8 @@ export async function getServerSideProps(context) {
     fetch(
       `https://api.themoviedb.org/3/${category}/${id}/similar?api_key=${process.env.API_KEY}&language=en-US&page=1`
     ),
-    // video trailer movie and tv
     fetch(
-      `https://api.themoviedb.org/3/${category}/${id}//watch/providers?api_key=${process.env.API_KEY}&language=en-US`
+      `https://api.themoviedb.org/3/${category}/${id}/videos?api_key=${process.env.API_KEY}&language=en-US`
     ),
   ]);
 
@@ -227,7 +248,7 @@ export async function getServerSideProps(context) {
   ]);
 
   return {
-    props: { detail, similarShow, trailerVideo, category }, // will be passed to the page component as props
+    props: { detail, similarShow, category, trailerVideo }, // will be passed to the page component as props
   };
 }
 

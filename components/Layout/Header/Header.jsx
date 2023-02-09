@@ -65,7 +65,7 @@ function Header() {
         scrollDirection === "down" ? style.showHeader : style.Headercss
       }
     >
-      <div className={`w-[95%] flex justify-between`}>
+      <div className={`w-[95%] flex justify-between `}>
         {/* Nav Bar Link   */}
         <div className="flex items-center w-1/3 py-1 gap-4 relative lg:static">
           <button

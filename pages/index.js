@@ -7,10 +7,10 @@ import tmdbRequest from "@/pages/api/tmdb.request";
 import { HomeSlider } from "@/components/Slider/HomeSlider";
 import ItemSlider from "@/components/Slider/ItemSlider";
 import Layout from "../components/Layout/Layout";
+import RowItem from "@/components/RowItem/RowItem";
 
 function Home({ Trand, pupoler, upcome, top, newPlayData }) {
   const [MoviePoster, setMoviePoster] = useState([]); // state for filter movie
-  console.log(pupoler);
 
   // home filter movie from tv
   useEffect(() => {
@@ -36,36 +36,16 @@ function Home({ Trand, pupoler, upcome, top, newPlayData }) {
           </section>
 
           {/*populer Movie , Tv*/}
-          <section className="h-max w-[90%] mx-auto my-14">
-            <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
-              Pupoler Movie & Tv
-            </h1>
-            <ItemSlider data={pupoler.results} />
-          </section>
+          <RowItem title="Pupoler Movie & Tv" DataRow={pupoler.results} />
 
           {/*New Play Movie , Tv*/}
-          <section className="h-max w-[90%] mx-auto my-14">
-            <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
-              New Play Movie & Tv
-            </h1>
-            <ItemSlider data={newPlayData.results} />
-          </section>
+          <RowItem title="New Play Movie & Tv" DataRow={newPlayData.results} />
 
           {/*UpComing Movie , Tv*/}
-          <section className="h-max w-[90%] mx-auto my-14">
-            <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
-              Upcoming Movie & Tv
-            </h1>
-            <ItemSlider data={upcome.results} />
-          </section>
+          <RowItem title="Upcoming Movie & Tv" DataRow={upcome.results} />
 
           {/*TopRate Movie , Tv*/}
-          <section className="h-max w-[90%] mx-auto my-14">
-            <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
-              TopRate Movie & Tv
-            </h1>
-            <ItemSlider data={top.results} />
-          </section>
+          <RowItem title="TopRate Movie & Tv" DataRow={top.results} />
         </main>
       </Layout>
     </>

@@ -6,7 +6,7 @@
   align-items: center;
   position: absolute;
   background-color: transparent;
-  z-index: 10;
+  z-index: 999;
 }
 
 .showHeader {
@@ -19,6 +19,7 @@
   width: 100%;
   animation: show 0.4s;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.623);
+  z-index: 999;
 }
 
 @keyframes show {
