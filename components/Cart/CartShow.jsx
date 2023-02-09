@@ -8,7 +8,7 @@ function CartShow({ data }) {
   return (
     <div className={style.ItemSlider}>
       {" "}
-      <Image
+      <img
         src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
         className={style.ItemSliderImg}
         alt="image poster"

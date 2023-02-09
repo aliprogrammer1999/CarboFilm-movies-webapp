@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 // dependency;
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -14,10 +14,15 @@ import { Navigation } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
-import style from "@/styles/Slider.module.css";
 import CartShow from "../Cart/CartShow";
 
 function ItemSlider({ data }) {
+  const [showData, setShowData] = useState([]);
+
+  useEffect(() => {
+    setShowData(data);
+  }, [data]);
+
   return (
     <div>
       <Swiper
@@ -53,6 +58,7 @@ function ItemSlider({ data }) {
         className="mySwiper h-[500px] select-none"
       >
         {/* item info  */}
+
         {data.map((item) => (
           <SwiperSlide key={item.id} className="h-full">
             <CartShow data={item} />

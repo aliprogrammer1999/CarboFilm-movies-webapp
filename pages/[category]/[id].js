@@ -187,10 +187,11 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
           <h1 className="  mb-3 pb-3 text-2xl font-bold text-center border-color-red  uppercase">
             similar {category}
           </h1>
-          {similarShow.results == null
-            ? console.log("ali")
-            : console.log(similarShow.results)}
-          {/* <ItemSlider data={similarShow.results} /> */}
+          {similarShow.results.length == 0 ? (
+            <h1 className=" text-center text-color-red font-bold">Not Found Please Try again</h1>
+          ) : (
+            <ItemSlider data={similarShow.results} />
+          )}
         </section>
       </Layout>
 
