@@ -10,7 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 // Import Swiper styles
-import style from "./Slider.module.css";
+import style from "@/styles/Slider.module.css";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";

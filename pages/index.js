@@ -10,6 +10,7 @@ import Layout from "../components/Layout/Layout";
 
 function Home({ Trand, pupoler, upcome, top, newPlayData }) {
   const [MoviePoster, setMoviePoster] = useState([]); // state for filter movie
+  console.log(pupoler);
 
   // home filter movie from tv
   useEffect(() => {
