@@ -1,0 +1,49 @@
+.postercss {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.postercss img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+.poster_small {
+  position: relative;
+  border-radius: 0.3rem;
+  overflow: hidden;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.poster_small img {
+  transition: all 0.3s;
+}
+
+.poster_small:hover img {
+  opacity: 0.1;
+}
+
+.poster_small div {
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  position: absolute;
+  transition: all 0.3s;
+  border: 2px solid gray;
+}
+
+.poster_small:hover div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
