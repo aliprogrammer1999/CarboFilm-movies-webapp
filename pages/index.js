@@ -2,10 +2,9 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
 // api
-import tmdbRequest from "@/pages/api/tmdb.request";
+import {tmdbRequest} from "@/pages/api/tmdb.request";
 // component
 import { HomeSlider } from "@/components/Slider/HomeSlider";
-import ItemSlider from "@/components/Slider/ItemSlider";
 import Layout from "../components/Layout/Layout";
 import RowItem from "@/components/RowItem/RowItem";
 
@@ -14,10 +13,7 @@ function Home({ Trand, pupoler, upcome, top, newPlayData }) {
 
   // home filter movie from tv
   useEffect(() => {
-    const filterMoviePoster = Trand.results.filter(
-      (item) => item.media_type === "movie"
-    );
-    setMoviePoster(filterMoviePoster);
+    setMoviePoster(Trand.results);
   }, [Trand]);
 
   return (

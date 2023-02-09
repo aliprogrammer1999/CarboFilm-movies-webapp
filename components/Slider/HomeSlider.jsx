@@ -18,6 +18,7 @@ import "swiper/css/thumbs";
 
 export function HomeSlider({ poster }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  console.log(poster);
 
   return (
     <div>
@@ -47,7 +48,7 @@ export function HomeSlider({ poster }) {
             {/* title and link poster top home page  */}
             <div className="flex flex-col items-center gap-1 md:gap-8 absolute left-[50%] translate-x-[-50%]">
               <h1 className="text-xl md:text-4xl lg:text-6xl font-bold text-center">
-                {item.title}
+                {item.name || item.title}
               </h1>
 
               {/* link to detail  */}
