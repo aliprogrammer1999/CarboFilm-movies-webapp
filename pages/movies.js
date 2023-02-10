@@ -5,19 +5,21 @@ import SliderHead from "@/components/Slider/SliderHead";
 import { tmdbRequestMovie } from "./api/tmdb.request";
 
 function movies({ Trand, pupoler, upcome, top, newPlayData }) {
-  const [trandMovie, setTrandMovie] = useState(Trand);
+  const [trandMovie, setTrandMovie] = useState([]);
+
   useEffect(() => {
     const filterMovie = Trand.results.filter(
       (movie) => movie.media_type === "movie"
     );
-    setTrandMovie(Trand);
-  }, [Trand]);
+    console.log(filterMovie);
+    setTrandMovie(filterMovie);
+  }, []);
 
   return (
     <Layout>
       <section className="h-[120vh] w-full">
-        <div className="w-[90%] mx-auto">
-          <SliderHead data={trandMovie.results} />
+        <div className="w-[95%] lg:w-[95%] mx-auto">
+          <SliderHead data={trandMovie} />
         </div>
       </section>
     </Layout>

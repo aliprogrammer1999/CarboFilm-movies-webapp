@@ -2,15 +2,16 @@
 import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { motion } from "framer-motion";
+import Link from "next/link";
+import Image from "next/image";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import style from "@/styles/Slider.module.css";
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper";
-import Image from "next/image";
+import { Autoplay } from "swiper";
 
 function SliderHead({ data }) {
   console.log(data);
@@ -29,22 +30,42 @@ function SliderHead({ data }) {
           delay: 3500,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
         className="mySwiper"
       >
-        <SwiperSlide className="rounded-sm bg-red-600 mt-20">
-          <Image
-            src={`https://image.tmdb.org/t/p/original/${data?.backdrop_path}`}
-            width={100}
-            height={200}
-            className="w-full h-[450px]"
-          />
-        </SwiperSlide>
+        {data.map((item, index) => (
+          <SwiperSlide key={item.id} className="mt-20 relative">
+            <Image
+              src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
+              width={1600}
+              height={900}
+              alt={item.original_title}
+              className="h-[300px] md:h-[500px]  rounded-lg object-cover transition-all hover:opacity-75"
+            />
+            {/* title and link poster top home page  */}
+            <div className=" absolute top-0 w-full h-full flex flex-col transition-all hover:bg-[#0000009e] gap-6 justify-center items-center">
+              <h1 className="text-xl md:text-2xl lg:text-5xl font-bold text-center px-3">
+                {item.name || item.title}
+              </h1>
+
+              {/* link to detail  */}
+              <motion.button
+                whileTap={{ scale: 0.8 }}
+                whileHover={{ scale: 1.3 }}
+              >
+                <Link
+                  href={`/${
+                    item.media_type == undefined ? "movie" : item.media_type
+                  }/${item.id}`}
+                >
+                  <i className="ri-play-circle-line text-6xl text-color-red"></i>
+                </Link>
+              </motion.button>
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
     </>
   );
