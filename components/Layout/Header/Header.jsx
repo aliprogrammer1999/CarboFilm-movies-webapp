@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import Link from "next/link";
+import { ToastContainer, toast } from "react-toastify";
 
 // user Data
 import { UserAuth } from "@/context/Auth.context";
@@ -45,6 +46,13 @@ function Header() {
   const LogOutHandler = async () => {
     try {
       await logOut();
+      toast.error("LogOut !!!", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "dark",
+      });
       router.reload(window.location.pathname);
     } catch (err) {
       console.log(err);
@@ -198,6 +206,7 @@ function Header() {
           )}
         </div>
       </div>
+      <ToastContainer />
     </header>
   );
 }

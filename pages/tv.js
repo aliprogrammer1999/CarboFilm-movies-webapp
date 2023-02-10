@@ -7,11 +7,10 @@ import RowItem from "@/components/RowItem/RowItem";
 
 function tv({ Trand, pupoler, top, airing_todayData, on_the_airData }) {
   const [trandTv, setTrandTv] = useState([]);
-  console.log(Trand, pupoler, top, airing_todayData, on_the_airData);
   useEffect(() => {
     const filterTv = Trand.results.filter((Tv) => Tv.media_type === "tv");
     setTrandTv(filterTv);
-  }, []);
+  }, [Trand]);
 
   return (
     <Layout>

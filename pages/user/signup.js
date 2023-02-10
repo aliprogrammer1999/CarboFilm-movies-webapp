@@ -3,6 +3,7 @@ import Link from "next/link";
 import { UserAuth } from "@/context/Auth.context";
 import style from "@/styles/User.module.css";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
 
 function UeseSignUP() {
   const router = useRouter();
@@ -14,8 +15,15 @@ function UeseSignUP() {
 
   const googleSignInHandler = async () => {
     try {
-      router.push("/");
       await signWithGoogle();
+      toast.success(`Login Success Continue`, {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "dark",
+      });
+      router.push("/");
     } catch (err) {
       console.log(err);
     }
@@ -25,6 +33,14 @@ function UeseSignUP() {
     event.preventDefault();
     try {
       await signUp(email, password, displayName);
+
+      toast.success("Success SingUp please login", {
+        position: "top-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        theme: "dark",
+      });
       router.push("/user/login");
     } catch (err) {
       console.log(err);
@@ -116,6 +132,7 @@ function UeseSignUP() {
           </Link>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 }

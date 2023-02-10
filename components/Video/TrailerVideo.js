@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 function TrailerVideo({ videoData }) {
-  console.log(videoData);
   return (
     <div className="w-max h-max p-3 rounded-md bg-black">
       <iframe

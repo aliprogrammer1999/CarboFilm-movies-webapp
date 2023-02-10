@@ -18,7 +18,6 @@ import "swiper/css/thumbs";
 
 export function HomeSlider({ poster }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
-  console.log(poster);
 
   return (
     <div>
