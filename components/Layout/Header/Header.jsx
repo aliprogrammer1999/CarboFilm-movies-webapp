@@ -1,5 +1,4 @@
 /* eslint-disable jsx-a11y/alt-text */
-
 // dependency
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -84,34 +83,76 @@ function Header() {
           >
             <i className="ri-menu-line text-2xl font-bold"></i>
           </button>
-          {
-            <div
-              className={`transition-all duration-500 ${style.headerMobile} ${
-                showNavbar ? style.activeNavbar : style.closeNavbar
-              } flex`}
-            >
-              <i
-                className="ri-close-fill absolute top-4 right-5 text-2xl cursor-pointer lg:hidden"
-                onClick={() => setShowNavbar(false)}
-              ></i>
 
-              {/* Link to page  */}
-              {navLink.map((item, index) => (
+          <div
+            className={`transition-all duration-500 p-3 ${style.headerMobile} ${
+              showNavbar ? style.activeNavbar : style.closeNavbar
+            } flex`}
+          >
+            <i
+              className="ri-close-fill absolute top-4 right-5 text-2xl cursor-pointer lg:hidden"
+              onClick={() => setShowNavbar(false)}
+            ></i>
+
+            {/* Link to page  */}
+            {navLink.map((item, index) => (
+              <Link
+                key={index}
+                href={item.href}
+                className={`flex items-center gap-1 ${
+                  router.pathname == item.href
+                    ? style.activeLink
+                    : style.header_link
+                }`}
+              >
+                <i className={item.icon}></i>
+                {item.title}
+              </Link>
+            ))}
+
+            {/* respansive Account */}
+            <div className="md:hidden flex items-center text-sm flex-col p-3 bg-color-gray w-full rounded-md h-[200px]">
+              {user?.photoURL == null ? (
+                <i className="ri-user-3-fill w-[40px] h-[40px] bg-color-gray rounded-full flex justify-center items-center text-2xl"></i>
+              ) : (
+                <Image
+                  src={user.photoURL}
+                  className="h-20 w-20 rounded-full"
+                  alt="user Image"
+                  width={50}
+                  height={50}
+                />
+              )}
+
+              <h2 className="text-2xl text-white my-3">
+                <span>
+                  {user?.email ? (
+                    user.displayName
+                  ) : (
+                    <Link href="/user/login">Login/singup</Link>
+                  )}
+                </span>
+              </h2>
+
+              {/* ------------------------------ */}
+              <div className="flex justify-center gap-5">
                 <Link
-                  key={index}
-                  href={item.href}
-                  className={`flex items-center gap-1 ${
-                    router.pathname == item.href
-                      ? style.activeLink
-                      : style.header_link
-                  }`}
+                  className="flex items-center bg-color-black p-2 text-white gap-2 rounded-sm"
+                  href="/account"
                 >
-                  <i className={item.icon}></i>
-                  {item.title}
+                  <i className="ri-archive-line text-sm"></i>
+                  Watch List +
                 </Link>
-              ))}
+                <button
+                  className="flex items-center bg-color-black p-2 text-white gap-2 rounded-sm"
+                  onClick={LogOutHandler}
+                >
+                  <i className="ri-logout-circle-r-line text-sm"></i>
+                  LogOut
+                </button>
+              </div>
             </div>
-          }
+          </div>
         </div>
 
         {/* Logo  */}
@@ -135,17 +176,17 @@ function Header() {
           {user?.email ? (
             <div className="flex justify-center items-center relative">
               <div
-                className="flex items-center z-50 gap-3 bg-color-black p-[2px] pl-4 rounded-full cursor-pointer"
+                className="flex items-center z-50 gap-3 bg-color-black p-[2px] rounded-full cursor-pointer"
                 onClick={() => {
                   setOpenDrop(!openDrop);
                 }}
               >
                 {/* user Watch List badage  */}
-                <div className="flex items-center gap-2">
+                <div className="items-center gap-2 hidden md:flex pl-3">
                   <span className="text-xs bg-color-red h-4 w-4 flex justify-center items-center rounded-full">
                     1
                   </span>{" "}
-                  {user.displayName}
+                  <span>{user.displayName}</span>
                 </div>
 
                 {/* user Image */}
@@ -195,7 +236,7 @@ function Header() {
             </div>
           ) : (
             // if user singOut show this section -------------------
-            <Link href="/user/login">
+            <Link href="/user/login" className=" hidden md:flex">
               <div
                 className={`flex items-center z-50 gap-3 bg-color-gray p-[1px] pl-4 rounded-full cursor-pointer transition-all  ${style.accBtn}`}
               >
