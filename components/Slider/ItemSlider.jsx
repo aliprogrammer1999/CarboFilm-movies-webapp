@@ -55,7 +55,7 @@ function ItemSlider({ data }) {
             spaceBetween: 10,
           },
         }}
-        className="mySwiper h-[500px] select-none"
+        className="mySwiper h-[320px] max-w-[1440px] w-[250px] sm:w-full md:h-[500px] select-none"
       >
         {/* item info  */}
 

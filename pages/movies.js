@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Layout from "@/components/Layout/Layout";
 import SliderHead from "@/components/Slider/SliderHead";
+import RowItem from "@/components/RowItem/RowItem";
 import { tmdbRequestMovie } from "./api/tmdb.request";
 
 function movies({ Trand, pupoler, upcome, top, newPlayData }) {
@@ -17,10 +18,24 @@ function movies({ Trand, pupoler, upcome, top, newPlayData }) {
 
   return (
     <Layout>
-      <section className="h-[120vh] w-full">
+      {/* head slider  */}
+      <section className="h-max w-full">
         <div className="w-[95%] lg:w-[95%] mx-auto">
           <SliderHead data={trandMovie} />
         </div>
+      </section>
+      <section className="h-max">
+        {/*populer Movie , Tv*/}
+        <RowItem title="Pupoler Movie" DataRow={pupoler.results} />
+
+        {/*New Play Movie , Tv*/}
+        <RowItem title="New Play Movie" DataRow={newPlayData.results} />
+
+        {/*UpComing Movie , Tv*/}
+        <RowItem title="Upcoming Movie" DataRow={upcome.results} />
+
+        {/*TopRate Movie , Tv*/}
+        <RowItem title="TopRate Movie" DataRow={top.results} />
       </section>
     </Layout>
   );

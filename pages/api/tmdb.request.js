@@ -18,6 +18,7 @@ const tmdbRequest = {
   }/latest?api_key=${key}&language=en-US`,
   Trending: `https://api.themoviedb.org/3/trending/all/day?api_key=${key}`,
 };
+// Movie api
 const tmdbRequestMovie = {
   upComing: `https://api.themoviedb.org/3/movie/upcoming?api_key=${key}&language=en-US&page=1`,
   topRate: `https://api.themoviedb.org/3/movie/top_rated?api_key=${key}&language=en-US&page=1`,
@@ -26,12 +27,13 @@ const tmdbRequestMovie = {
   Lastes: `https://api.themoviedb.org/3/movie/latest?api_key=${key}&language=en-US`,
   Trending: `https://api.themoviedb.org/3/trending/all/day?api_key=${key}`,
 };
+
+// Tv api
 const tmdbRequestTv = {
-  upComing: `https://api.themoviedb.org/3/tv/upcoming?api_key=${key}&language=en-US&page=1`,
   topRate: `https://api.themoviedb.org/3/tv/top_rated?api_key=${key}&language=en-US&page=1`,
   pupoler: `https://api.themoviedb.org/3/tv/popular?api_key=${key}&language=en-US&page=1`,
-  NewPlay: `https://api.themoviedb.org/3/tv/now_playing?api_key=${key}&language=en-US&page=1`,
-  Lastes: `https://api.themoviedb.org/3/tv/latest?api_key=${key}&language=en-US`,
+  on_the_air: `https://api.themoviedb.org/3/tv/on_the_air?api_key=${key}&language=en-US&page=1`,
+  airing_today: `https://api.themoviedb.org/3/tv/airing_today?api_key=${key}&language=en-US&page=1`,
   Trending: `https://api.themoviedb.org/3/trending/all/day?api_key=${key}`,
 };
 

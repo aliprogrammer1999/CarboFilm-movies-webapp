@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -11,33 +12,33 @@ function CartShow({ data }) {
       <img
         src={`https://image.tmdb.org/t/p/original${data.poster_path}`}
         className={style.ItemSliderImg}
-        alt="image poster"
+        alt={data.original_name}
         width={300}
         height={200}
       />
       <div className={style.ItemInfo}>
         {/* title and overview  */}
         <div className="whitespace-pre-line px-2 gap-5 flex flex-col">
-          <h1 className="text-3xl font-bold">{data.title}</h1>
-          <span className="text-xs">{data.overview}</span>
+          <h1 className="text-lg md:text-3xl font-bold">{data.title}</h1>
+          <span className="hidden md:block text-xs">{data.overview}</span>
         </div>
 
         {/* ---------------- */}
 
         {/* icons and coont info  */}
-        <div className="flex gap-7 items-center mt-10 mb-5">
+        <div className="flex md:gap-7 md:items-center flex-col md:flex-row mt-10 mb-5">
           <span className="flex items-center gap-1">
-            <i className="ri-heart-fill text-color-red text-xl"></i>
+            <i className="ri-heart-fill text-color-red text-sm md:text-xl"></i>
             {data.vote_average}{" "}
           </span>
 
           {/* ------------------  */}
           <span className="flex items-center gap-1">
-            <i className="ri-calendar-event-line text-color-red text-xl"></i>
+            <i className="ri-calendar-event-line text-color-red text-sm md:text-xl"></i>
             {data.release_date}
           </span>
           {/* ------------------  */}
-          <span className="border-2 p-1 px-2 border-color-red flex items-center gap-1">
+          <span className="border-2 p-1 px-2 border-color-red flex items-center gap-1 text-sm md:text-xl justify-center">
             <i className="ri-global-fill"></i>
             {data.original_language}
           </span>

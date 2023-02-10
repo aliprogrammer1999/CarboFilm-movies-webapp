@@ -14,7 +14,6 @@ import style from "@/styles/Slider.module.css";
 import { Autoplay } from "swiper";
 
 function SliderHead({ data }) {
-  console.log(data);
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
   const onAutoplayTimeLeft = (s, time, progress) => {
@@ -41,7 +40,7 @@ function SliderHead({ data }) {
               src={`https://image.tmdb.org/t/p/original/${item.backdrop_path}`}
               width={1600}
               height={900}
-              alt={item.original_title}
+              alt="head slider"
               className="h-[300px] md:h-[500px]  rounded-lg object-cover transition-all hover:opacity-75"
             />
             {/* title and link poster top home page  */}

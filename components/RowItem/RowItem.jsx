@@ -5,7 +5,7 @@ function RowItem({ DataRow, title }) {
   return (
     <div>
       {" "}
-      <section className="h-max w-[90%] mx-auto my-14">
+      <section className="h-max w-[90%] max-w-[1440px] mx-auto my-14">
         <h1 className="text-3xl font-bold border-b-2 border-color-red w-max mb-8 ">
           {title}
         </h1>
