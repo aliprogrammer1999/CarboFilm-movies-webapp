@@ -12,6 +12,8 @@ function tv({ Trand, pupoler, top, airing_todayData, on_the_airData }) {
     setTrandTv(filterTv);
   }, [Trand]);
 
+  console.log(pupoler);
+
   return (
     <Layout>
       <section className="h-max w-full">

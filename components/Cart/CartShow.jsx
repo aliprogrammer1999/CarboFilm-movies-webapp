@@ -6,6 +6,13 @@ import Image from "next/image";
 import style from "@/styles/Cart.module.css";
 
 function CartShow({ data }) {
+  const truncate = (string) => {
+    if (string.length > 100) {
+      return string.slice(0, 60) + "...";
+    }
+    return string;
+  };
+
   return (
     <div className={style.ItemSlider}>
       {" "}
@@ -19,8 +26,12 @@ function CartShow({ data }) {
       <div className={style.ItemInfo}>
         {/* title and overview  */}
         <div className="whitespace-pre-line px-2 gap-5 flex flex-col">
-          <h1 className="text-lg md:text-3xl font-bold">{data.title}</h1>
-          <span className="hidden md:block text-xs">{data.overview}</span>
+          <h1 className="text-lg md:text-3xl font-bold">
+            {data.title || data.name}
+          </h1>
+          <span className="hidden md:block text-md">
+            {truncate(data.overview)}
+          </span>
         </div>
 
         {/* ---------------- */}
@@ -33,10 +44,12 @@ function CartShow({ data }) {
           </span>
 
           {/* ------------------  */}
-          <span className="flex items-center gap-1">
-            <i className="ri-calendar-event-line text-color-red text-sm md:text-xl"></i>
-            {data.release_date}
-          </span>
+          {data.release_date ? (
+            <span className="flex items-center gap-1">
+              <i className="ri-calendar-event-line text-color-red text-sm md:text-xl"></i>
+              {data.release_date}
+            </span>
+          ) : null}
           {/* ------------------  */}
           <span className="border-2 p-1 px-2 border-color-red flex items-center gap-1 text-sm md:text-xl justify-center">
             <i className="ri-global-fill"></i>
