@@ -37,16 +37,12 @@ function ItemSlider({ data }) {
           clickable: true,
         }}
         breakpoints={{
-          320: {
-            slidesPerView: 1,
-          },
-          500: {
+          425: {
             slidesPerView: 2,
-          },
-          768: {
-            slidesPerView: 3,
             spaceBetween: 10,
           },
+          720: {slidesPerView: 3,},
+
           1024: {
             slidesPerView: 3,
           },
@@ -55,7 +51,7 @@ function ItemSlider({ data }) {
             spaceBetween: 10,
           },
         }}
-        className="mySwiper h-[320px] max-w-[1440px] w-[250px] sm:w-full md:h-[500px] select-none"
+        className="mySwiper h-[400px] max-w-[1440px]  sm:w-full md:h-[500px] select-none"
       >
         {/* item info  */}
 

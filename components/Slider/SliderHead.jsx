@@ -32,7 +32,7 @@ function SliderHead({ data }) {
         navigation={true}
         modules={[Autoplay]}
         onAutoplayTimeLeft={onAutoplayTimeLeft}
-        className="mySwiper"
+        className="mySwiper headSlider"
       >
         {data.map((item, index) => (
           <SwiperSlide key={item.id} className="mt-20 relative">

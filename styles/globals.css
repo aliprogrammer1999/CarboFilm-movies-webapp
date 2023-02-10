@@ -63,6 +63,14 @@ body {
   align-items: center;
 }
 
+/* head slider  */
+.headSlider .swiper-button-next:after {
+  display: none;
+}
+.headSlider .swiper-button-prev:after {
+  display: none;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
