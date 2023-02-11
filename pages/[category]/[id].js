@@ -23,8 +23,6 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
   const [save, setSave] = useState(false);
   const [videoBox, setVideoBox] = useState(false);
 
-  console.log(detail);
-
   const MovieId = doc(db, "users", `${user?.email}`);
   const [isItem, setisItem] = useState([]);
 

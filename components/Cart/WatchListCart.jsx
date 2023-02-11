@@ -4,8 +4,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import style from "@/styles/Cart.module.css";
 
-function WatchListCart({ data }) {
-  console.log(data);
+function WatchListCart({ data, deleteItem }) {
   return (
     <>
       {data.map((item) => (
@@ -32,6 +31,7 @@ function WatchListCart({ data }) {
               </Link>
             </motion.button>
             <motion.button
+              onClick={() => deleteItem(item.id)}
               className=" absolute top-3 left-2 bg-white px-1 rounded-md"
               whileTap={{ scale: 0.8 }}
               whileHover={{ scale: 1.1 }}

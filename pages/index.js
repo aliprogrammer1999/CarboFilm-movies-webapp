@@ -16,7 +16,6 @@ function Home({ Trand, pupoler, upcome, top, newPlayData }) {
     setMoviePoster(Trand.results);
   }, [Trand]);
 
-  console.log(Trand);
   return (
     <>
       <Head>

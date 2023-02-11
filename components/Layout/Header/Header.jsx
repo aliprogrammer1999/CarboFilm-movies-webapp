@@ -183,9 +183,6 @@ function Header() {
               >
                 {/* user Watch List badage  */}
                 <div className="items-center gap-2 hidden md:flex pl-3">
-                  <span className="text-xs bg-color-red h-4 w-4 flex justify-center items-center rounded-full">
-                    1
-                  </span>{" "}
                   <span>{user.displayName}</span>
                 </div>
 
