@@ -12,8 +12,6 @@ function tv({ Trand, pupoler, top, airing_todayData, on_the_airData }) {
     setTrandTv(filterTv);
   }, [Trand]);
 
-  console.log(pupoler);
-
   return (
     <Layout>
       <section className="h-max w-full">
@@ -26,13 +24,10 @@ function tv({ Trand, pupoler, top, airing_todayData, on_the_airData }) {
         <RowItem title="Pupoler Tv" DataRow={pupoler.results} />
 
         {/*New Play Movie , Tv*/}
-        <RowItem
-          title="Airing TodayData Tv"
-          DataRow={airing_todayData.results}
-        />
+        <RowItem title="Airing Today Tv" DataRow={airing_todayData.results} />
 
         {/*UpComing Movie , Tv*/}
-        <RowItem title="On the AirData Tv" DataRow={on_the_airData.results} />
+        <RowItem title="On the Air Tv" DataRow={on_the_airData.results} />
 
         {/*TopRate Movie , Tv*/}
         <RowItem title="TopRate Tv" DataRow={top.results} />

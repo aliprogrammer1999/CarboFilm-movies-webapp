@@ -45,6 +45,8 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
 
   // -----------------
 
+  console.log(detail);
+
   return (
     <>
       <Layout>
@@ -90,24 +92,26 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
               <Image
                 src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
                 className="h-full hidden md:block object-continer rounded-lg w-[370px]"
-                alt={detail?.title}
+                alt={detail?.title || detail?.name}
                 width={250}
                 height={100}
               />
             </div>
 
             {/* information about movie and tv  */}
-            <div className="md:w-full p-3 py-4 flex flex-col gap-2 justify-between text-sm lg:text-lg">
+            <div className="md:w-full p-3 py-4 flex flex-col gap-1 justify-between text-sm lg:text-lg">
               {/* show title and top section  */}
 
-              <div className="flex flex-col lg:flex-row lg:items-center gap-3">
-                <h1 className="text-3xl font-bold">{detail?.title}</h1>
+              <div className="flex flex-col lg:flex-row lg:items-center gap-2">
+                <h1 className="text-3xl font-bold">
+                  {detail?.title || detail?.name}
+                </h1>
                 {detail.tagline ? (
                   <h4 className="text-xs ml-4">({detail?.tagline})</h4>
                 ) : null}
               </div>
               {/* ---------------- */}
-              <div className="w-[300px] flex gap-10 justify-center items-center ml-4">
+              <div className="flex gap-6 justify-start  ml-5">
                 <div className=" text-bold w-[30px] text-sm lg:text-lg flex justify-center items-center rounded-full ">
                   <i className="ri-heart-fill text-color-red text-sm lg:text-2xl"></i>
                   {Math.round(detail?.vote_average)}/10
@@ -115,13 +119,22 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
                 {/* ---------------- */}
                 <div className="flex items-center text-sm lg:text-lg">
                   <i className="ri-timer-line text-color-red text-sm lg:text-2xl"></i>
-                  {detail?.runtime}
+                  {detail?.runtime || detail?.episode_run_time[0]}
                 </div>
                 {/* --------------- */}
-                <div className="flex items-center text-sm lg:text-lg">
-                  <i className="ri-calendar-event-line text-color-red text-sm lg:text-2xl"></i>
-                  {detail?.release_date}
+                <div className="flex items-center text-sm lg:text-lg whitespace-nowrap">
+                  <i className="ri-calendar-event-line text-color-red text-sm lg:text-2xl "></i>
+                  {detail?.release_date || detail?.first_air_date}
                 </div>
+                {/* ------------------  */}
+                {detail?.number_of_seasons ? (
+                  <div className="flex items-center text-sm lg:text-lg">
+                    <i className="ri-play-circle-line text-color-red text-sm lg:text-2xl"></i>
+                    <span className="text-sm flex gap-2">
+                      seasons : {detail?.number_of_seasons}
+                    </span>
+                  </div>
+                ) : null}
               </div>
 
               {/* language and Countries middle section*/}
@@ -148,6 +161,20 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
                   </h3>
                 ))}
               </div>
+              {/* -------------------- */}
+              {detail?.networks ? (
+                <div className="flex gap-2 w-max px-3 rounded-xl items-center flex-wrap">
+                  networks :
+                  {detail?.networks.map((item, index) => (
+                    <h3
+                      key={index}
+                      className="border-color-red border-2 px-2 py-1 text-xs"
+                    >
+                      {item.name}
+                    </h3>
+                  ))}
+                </div>
+              ) : null}
               {/* ---------------- */}
               <div className="flex gap-2 w-max px-3 rounded-xl items-center">
                 Language :
