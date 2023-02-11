@@ -25,7 +25,7 @@ function WatchListCart({ data }) {
             >
               <Link
                 href={`/${
-                  item.media_type == undefined ? "movie" : item.media_type
+                  item.media_type === undefined ? "movie" : item.media_type
                 }/${item.id}`}
               >
                 <i className="ri-play-circle-line text-4xl text-color-red"></i>

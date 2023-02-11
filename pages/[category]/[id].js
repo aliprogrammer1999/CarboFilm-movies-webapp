@@ -23,6 +23,8 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
   const [save, setSave] = useState(false);
   const [videoBox, setVideoBox] = useState(false);
 
+  console.log(detail);
+
   const MovieId = doc(db, "users", `${user?.email}`);
   const [isItem, setisItem] = useState([]);
 
@@ -39,10 +41,9 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
       await updateDoc(MovieId, {
         saveShow: arrayUnion({
           id: detail.id,
-          title: detail.title,
+          title: detail.name || detail.title,
           img: detail.poster_path,
-          media_type:
-            detail.media_type === undefined ? "movie" : detail.media_type,
+          media_type: detail.media_type === undefined ? "movie" : "tv",
         }),
       });
       if (isItem?.find((item) => item.id == detail.id)) {
