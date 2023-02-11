@@ -39,5 +39,35 @@
   flex-direction: column;
   gap: 0.5rem;
   border: 1px solid white;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
+}
+
+/* Watch List  */
+
+.watchlistBox {
+  width: 200px;
+  height: max-content;
+  position: relative;
+}
+
+.watchListstyle {
+  width: 100%;
+  opacity: 0;
+  overflow: hidden;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  transition: all 0.3s;
+  gap: 1rem;
+}
+
+.watchlistBox:hover .watchListstyle {
+  opacity: 0.9;
+  border: 1px solid white;
+  border-radius: .3rem;
 }

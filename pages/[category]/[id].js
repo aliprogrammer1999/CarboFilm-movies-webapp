@@ -1,5 +1,4 @@
 /* eslint-disable @next/next/no-head-element */
-
 // dependency;
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -16,7 +15,7 @@ import ItemSlider from "@/components/Slider/ItemSlider";
 // user save item
 import { UserAuth } from "@/context/Auth.context";
 import { db } from "@/firebase/firebase";
-import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { arrayUnion, doc, updateDoc, onSnapshot } from "firebase/firestore";
 import TrailerVideo from "@/components/Video/TrailerVideo";
 
 function MediaType({ detail, similarShow, category, trailerVideo }) {
@@ -25,6 +24,13 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
   const [videoBox, setVideoBox] = useState(false);
 
   const MovieId = doc(db, "users", `${user?.email}`);
+  const [isItem, setisItem] = useState([]);
+
+  useEffect(() => {
+    onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
+      setisItem(doc.data()?.saveShow);
+    });
+  }, [user?.email]);
 
   // watch list handler
   const saveShow = async () => {
@@ -35,17 +41,36 @@ function MediaType({ detail, similarShow, category, trailerVideo }) {
           id: detail.id,
           title: detail.title,
           img: detail.poster_path,
+          media_type:
+            detail.media_type === undefined ? "movie" : detail.media_type,
         }),
       });
-      toast.success("Success add to watch list");
+      if (isItem?.find((item) => item.id == detail.id)) {
+        toast.warning("this show already in watchList", {
+          position: "top-right",
+          autoClose: 1000,
+          closeOnClick: false,
+          theme: "dark",
+        });
+      } else {
+        toast.success("Success add to watch list", {
+          position: "top-right",
+          autoClose: 1000,
+          closeOnClick: false,
+          theme: "dark",
+        });
+      }
     } else {
-      toast.error("Please login !!!");
+      toast.error("Please login !!!", {
+        position: "top-right",
+        autoClose: 1000,
+        closeOnClick: false,
+        theme: "dark",
+      });
     }
   };
 
   // -----------------
-
-  console.log(detail);
 
   return (
     <>

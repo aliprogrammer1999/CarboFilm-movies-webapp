@@ -138,7 +138,7 @@ function Header() {
               <div className="flex justify-center gap-5">
                 <Link
                   className="flex items-center bg-color-black p-2 text-white gap-2 rounded-sm"
-                  href="/account"
+                  href="/watchlist"
                 >
                   <i className="ri-archive-line text-sm"></i>
                   Watch List +
@@ -219,7 +219,7 @@ function Header() {
                 {/* ------------------------------ */}
                 <Link
                   className="flex items-center justify-center py-1 gap-1 bg-color-gray w-full rounded-md "
-                  href="/account"
+                  href="/watchlist"
                 >
                   {/* ------------------------ */}
                   <i className="ri-archive-line text-lg"></i>
