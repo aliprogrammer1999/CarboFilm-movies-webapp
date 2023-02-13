@@ -26,14 +26,19 @@ function WatchList() {
     });
   }, [user?.email]);
 
+  console.log(watchListData)
+
   // item delete from watch List
   const ItemId = doc(db, "users", `${user?.email}`);
 
   const deleteHandler = async (id) => {
-    const findIndex = watchListData.find((item) => item.id === id);
-    await updateDoc(ItemId);
-  };
-
+    const itemer = watchListData.filter(deleteitem => deleteitem.id !== id)
+    if (user?.email) {
+      await updateDoc(ItemId, {
+        saveShow: itemer,
+      });
+    };
+  }
   return (
     <Layout>
       <section className=" w-[100%] h-[110vh] flex justify-center items-center">
