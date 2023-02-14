@@ -14,7 +14,7 @@ function movies({ Trand, pupoler, upcome, top, newPlayData }) {
     );
     console.log(filterMovie);
     setTrandMovie(filterMovie);
-  }, []);
+  }, [Trand.results]);
 
   return (
     <Layout>

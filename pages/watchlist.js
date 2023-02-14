@@ -26,8 +26,6 @@ function WatchList() {
     });
   }, [user?.email]);
 
-  console.log(watchListData)
-
   // item delete from watch List
   const ItemId = doc(db, "users", `${user?.email}`);
 
