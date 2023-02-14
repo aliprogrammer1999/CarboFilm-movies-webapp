@@ -1,52 +1,58 @@
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 function Footer() {
   return (
-    <footer className="w-full h-max bg-color-[#202020] flex justify-center items-center">
-      <div className="w-[80%] bg-black h-[80%] rounded-md px-10 py-5 flex flex-col gap-7 justify-center items-center">
-        <div className="text-5xl flex gap-5">
+    <footer className="w-full h-max bg-color-[#202020] flex items-center">
+      <h1 className="w-full text-center rounded">CarboFilm {"<--->"} alirg1999 © 2023</h1>
+
+      <div className="w-[80%] bg-black rounded-md px-10 py-5 flex gap-7 justify-center items-center">
+        <div className="text-xl flex gap-5">
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className="hover:bg-color-black w-[70px] h-[70px] rounded-full pt-2 transition-all"
           >
-            <i className="ri-github-fill"></i>
+            <Link href="https://github.com/aliprogrammer1999/CarboFilm-movies-webapp.git">
+              <i className="ri-github-fill text-2xl p-2 transition-all w-[50px] h-[50px] hover:bg-color-black rounded-full"></i>
+            </Link>
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className="hover:bg-color-black w-[70px] h-[70px] rounded-full pt-2 transition-all"
           >
-            <i className="ri-instagram-line"></i>
+            <Link href="https://gitlab.com/ali.programer.1999/carbofilm-nextjs-javascript.git">
+              <i className="ri-gitlab-fill text-2xl p-2 transition-all w-[50px] h-[50px] hover:bg-color-black rounded-full"></i>
+            </Link>
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className="hover:bg-color-black w-[70px] h-[70px] rounded-full pt-2 transition-all"
           >
-            <i className="ri-telegram-fill"></i>
+            <Link href="https://www.instagram.com/ali.r.g.1999">
+              <i className="ri-instagram-line text-2xl p-2 transition-all w-[50px] h-[50px] hover:bg-color-black rounded-full"></i>
+            </Link>
           </motion.button>
           <motion.button
             whileTap={{ scale: 0.9 }}
-            className="hover:bg-color-black w-[70px] h-[70px] rounded-full pt-2 transition-all"
           >
-            <i className="ri-twitter-fill"></i>
+            <Link href="https://telegram.me/ali_rezapour_gatabi">
+              <i className="ri-telegram-fill text-2xl p-2 transition-all w-[50px] h-[50px] hover:bg-color-black rounded-full"></i>
+            </Link>
+          </motion.button>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+          >
+            <Link href="mailto:ali.programer.1999@gmail.com">
+              <i className="ri-mail-fill text-2xl p-2 transition-all w-[50px] h-[50px] hover:bg-color-black rounded-full"></i>
+            </Link>
+          </motion.button>
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+          >
+            <Link href="tel:09379534460">
+              <i className="ri-phone-fill text-2xl p-2 transition-all w-[50px] h-[50px] hover:bg-color-black rounded-full"></i>
+            </Link>
           </motion.button>
         </div>
 
-        <div className="text-center flex gap-14 flex-col md:flex-row md:items-center">
-          <div className="flex items-center gap-2">
-            <i className="ri-mail-send-line text-xl"></i>
-            ali.programer.1999@gmail.com
-          </div>
-          <div className="flex items-center gap-2">
-            <i className="ri-phone-fill text-xl"></i>
-            09379534460
-          </div>
-          <div className="flex items-center gap-2">
-            <i className="ri-map-pin-line text-xl"></i>
-            Iran/Mazandran/Babol
-          </div>
-        </div>
-        <h1 className="w-full text-center bg-color-gray rounded">CarboFilm © 2023</h1>
       </div>
     </footer>
   );
